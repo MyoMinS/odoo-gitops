@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.example.com/odoo-gitops.git
+    repoURL: https://github.com/MyoMinS/odoo-gitops.git
     targetRevision: main
     path: charts/redis
     helm:
@@ -13,7 +13,7 @@ spec:
       - ../../env/pilot/transaction-redis.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: pilot-transaction-redis
+    namespace: pilot-transaction
   syncPolicy:
     automated:
       prune: true

@@ -12,7 +12,7 @@ postgres:
 
 storage:
   size: 20Gi
-  storageClass: alicloud-disk-ssd
+  storageClass: standard
 
 resources:
   requests:

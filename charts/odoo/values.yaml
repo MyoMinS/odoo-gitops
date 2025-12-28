@@ -33,7 +33,7 @@ resources:
 
 filestore:
   size: 20Gi
-  storageClass: alicloud-nas
+  storageClass: standard
 
 ingress:
   enabled: true

@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://gitlab.example.com/odoo-gitops.git
+    repoURL: https://github.com/MyoMinS/odoo-gitops.git
     targetRevision: main
     path: charts/postgres
     helm:
@@ -13,7 +13,7 @@ spec:
       - ../../env/pilot/transaction-postgres.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: pilot-transaction-postgres
+    namespace: pilot-transaction
   syncPolicy:
     automated:
       prune: true
