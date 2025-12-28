@@ -1,5 +1,5 @@
 image:
-  tag: "17.0-pilot"
+  tag: "17"
 
 postgres:
   host: postgres
