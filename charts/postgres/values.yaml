@@ -1,0 +1,21 @@
+image:
+  repository: postgres
+  tag: "17"
+  pullPolicy: IfNotPresent
+
+postgres:
+  db: odoo
+  user: odoo
+  password: odoo123
+
+storage:
+  size: 50Gi
+  storageClass: alicloud-disk-ssd
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: "1"
+    memory: 2Gi

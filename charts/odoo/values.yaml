@@ -1,0 +1,48 @@
+image:
+  repository: odoo
+  tag: "17.0"
+  pullPolicy: IfNotPresent
+
+replicas:
+  web: 2
+  worker: 1
+  cron: 1
+
+postgres:
+  host: ""
+  port: 5432
+  db: odoo
+  user: odoo
+
+redis:
+  host: ""
+  port: 6379
+
+resources:
+  web:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+    limits:
+      cpu: "1"
+      memory: 2Gi
+  worker:
+    requests:
+      cpu: 500m
+      memory: 1Gi
+
+filestore:
+  size: 20Gi
+  storageClass: alicloud-nas
+
+ingress:
+  enabled: true
+  className: alb
+  host: ""
+  tls: false
+
+hpa:
+  enabled: false
+  min: 2
+  max: 6
+  cpu: 65

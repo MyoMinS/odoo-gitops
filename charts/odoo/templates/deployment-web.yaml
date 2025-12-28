@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-web
+spec:
+  replicas: {{ .Values.replicas.web }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+      role: web
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+        role: web
+    spec:
+      containers:
+      - name: odoo
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 8069
+        env:
+        - name: DB_HOST
+          value: {{ .Values.postgres.host }}
+        - name: DB_USER
+          value: {{ .Values.postgres.user }}
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Release.Name }}-secret
+              key: db-password
+        - name: REDIS_HOST
+          value: {{ .Values.redis.host }}
+        - name: WORKERS
+          value: "4"
+        - name: LIMIT_MEMORY_SOFT
+          value: "1GB"
+        - name: LIMIT_MEMORY_HARD
+          value: "1.5GB"
+        resources: {{- toYaml .Values.resources.web | nindent 10 }}
+        volumeMounts:
+        - name: filestore
+          mountPath: /var/lib/odoo
+      volumes:
+      - name: filestore
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-filestore

@@ -1,0 +1,18 @@
+image:
+  tag: "17.0-prod"
+
+postgres:
+  host: rds-prod.xxx.rds.aliyuncs.com
+
+redis:
+  host: redis-prod.xxx.redis.aliyuncs.com
+
+ingress:
+  host: transaction.example.com
+
+replicas:
+  web: 3
+  worker: 2
+
+hpa:
+  enabled: true

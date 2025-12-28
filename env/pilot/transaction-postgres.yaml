@@ -1,0 +1,23 @@
+# PostgreSQL values for Pilot Transaction
+
+image:
+  repository: postgres
+  tag: "17"
+  pullPolicy: IfNotPresent
+
+postgres:
+  db: odoo
+  user: odoo
+  password: pilot1234   # Replace with secure password
+
+storage:
+  size: 20Gi
+  storageClass: alicloud-disk-ssd
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
+  limits:
+    cpu: 1
+    memory: 2Gi

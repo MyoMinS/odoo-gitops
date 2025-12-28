@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-cron
+spec:
+  replicas: {{ .Values.replicas.cron }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+      role: cron
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+        role: cron
+    spec:
+      containers:
+      - name: cron
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        command: ["odoo", "--workers=0", "--max-cron-threads=2"]
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-secret

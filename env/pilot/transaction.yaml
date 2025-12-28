@@ -1,0 +1,18 @@
+image:
+  tag: "17.0-pilot"
+
+postgres:
+  host: postgres
+
+redis:
+  host: redis
+
+ingress:
+  host: pilot-transaction.example.com
+
+replicas:
+  web: 1
+  worker: 1
+
+hpa:
+  enabled: false

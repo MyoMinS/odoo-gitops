@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: odoo-prod-transaction
+spec:
+  source:
+    repoURL: https://gitlab.example.com/odoo-gitops.git
+    targetRevision: main
+    path: charts/odoo
+    helm:
+      valueFiles:
+      - ../../env/prod/transaction.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod-transaction
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

@@ -1,0 +1,21 @@
+# Redis values for Pilot Transaction
+
+image:
+  repository: redis
+  tag: "7"
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClass: alicloud-disk-ssd
