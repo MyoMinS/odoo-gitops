@@ -2,7 +2,7 @@
 
 image:
   repository: redis
-  tag: "7"
+  tag: "latest"
   pullPolicy: IfNotPresent
 
 replicaCount: 1
